@@ -39,13 +39,7 @@ class Return {
 	            r.message = message
 	            return r
 	        }
-	
-	        /**
-	         * Resposta de erro com mensagem.
-	         *
-	         * @param message .
-	         * @return Response
-	         */
+
 	        fun error(message: String): Return {
 	            val r = Return()
 	            r.message = message
