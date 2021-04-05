@@ -8,14 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import br.com.joaos.crud.kotlin.model.Product
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.DeleteMapping
-import br.com.joaos.crud.kotlin.model.Return
-import br.com.joaos.crud.kotlin.exception.DataException
 
 @RestController
 @RequestMapping("/api/products")
@@ -26,32 +23,32 @@ class ProductController {
 	lateinit var productService: ProductService
 	
 	@PostMapping
-	fun createNewProduct(@RequestBody product: Product): ResponseEntity<Return> {
+	fun createNewProduct(@RequestBody product: Product): ResponseEntity<Product> {
 		val productCreated = productService.createProduct(product)
-		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product", productCreated))
+		return ResponseEntity.ok(productCreated)
 	}
 	
 	@GetMapping
-	fun getProducts(): ResponseEntity<Return> {
+	fun getProducts(): ResponseEntity<MutableIterable<Product>> {
 		val products = productService.findAllProducts()
-		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Products", products))
+		return ResponseEntity.ok(products)
 	}
 	
 	@GetMapping("/{id}")
-	fun getProductById(@PathVariable id: Long): ResponseEntity<Return> {
+	fun getProductById(@PathVariable id: Long): ResponseEntity<Product> {
 		val product = productService.findProductById(id)
-		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product", product))
+		return ResponseEntity.ok(product)
 	}
 	
 	@PutMapping
-	fun updateProduct(@RequestBody product: Product): ResponseEntity<Return> {
+	fun updateProduct(@RequestBody product: Product): ResponseEntity<Product> {
 		val productUpdated = productService.updateProduct(product)
-		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product Updated", productUpdated))
+		return ResponseEntity.ok(productUpdated)
 	}
 	
 	@DeleteMapping("/{id}")
-	fun deleteProduct(@PathVariable id: Long): ResponseEntity<Return> {
+	fun deleteProduct(@PathVariable id: Long): ResponseEntity<Product> {
 		val productDeleted = productService.deleteProductById(id)
-		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product Deleted", productDeleted))
+		return ResponseEntity.ok(productDeleted)
 	}
 }
