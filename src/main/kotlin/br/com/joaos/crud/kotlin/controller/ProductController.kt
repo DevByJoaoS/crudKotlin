@@ -27,51 +27,31 @@ class ProductController {
 	
 	@PostMapping
 	fun createNewProduct(@RequestBody product: Product): ResponseEntity<Return> {
-		try{
-			val productCreated = productService.createProduct(product)
-			return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product", productCreated))
-		} catch(e: DataException) {
-			return ResponseEntity.status(e.httpStatus).body(Return.error(e.message))
-		}
+		val productCreated = productService.createProduct(product)
+		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product", productCreated))
 	}
 	
 	@GetMapping
 	fun getProducts(): ResponseEntity<Return> {
-		try{
-			val products = productService.findAllProducts()
-			return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Products", products))
-		}catch(e: DataException) {
-			return ResponseEntity.status(e.httpStatus).body(Return.error(e.message))
-		}
+		val products = productService.findAllProducts()
+		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Products", products))
 	}
 	
 	@GetMapping("/{id}")
 	fun getProductById(@PathVariable id: Long): ResponseEntity<Return> {
-		try{
-			val product = productService.findProductById(id)
-			return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product", product))
-		}catch(e: DataException) {
-			return ResponseEntity.status(e.httpStatus).body(Return.error(e.message))
-		}
+		val product = productService.findProductById(id)
+		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product", product))
 	}
 	
 	@PutMapping
 	fun updateProduct(@RequestBody product: Product): ResponseEntity<Return> {
-		try{
-			val productUpdated = productService.updateProduct(product)
-			return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product Updated", productUpdated))
-		}catch(e: DataException) {
-			return ResponseEntity.status(e.httpStatus).body(Return.error(e.message))
-		}
+		val productUpdated = productService.updateProduct(product)
+		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product Updated", productUpdated))
 	}
 	
 	@DeleteMapping("/{id}")
 	fun deleteProduct(@PathVariable id: Long): ResponseEntity<Return> {
-		try{
-			val productDeleted = productService.deleteProductById(id)
-			return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product Deleted", productDeleted))
-		}catch(e: DataException) {
-			return ResponseEntity.status(e.httpStatus).body(Return.error(e.message))
-		}
+		val productDeleted = productService.deleteProductById(id)
+		return ResponseEntity.status(HttpStatus.OK).body(Return.ok().addData("Product Deleted", productDeleted))
 	}
 }
