@@ -30,12 +30,12 @@ class Return {
 	
 	companion object {
 		
-		fun ok(): Return {
+		fun getReturn(): Return {
 	            return Return()
 	     }
 		
 		fun ok(message: String): Return {
-	            val r = Return.ok()
+	            val r = Return.getReturn()
 	            r.message = message
 	            return r
 	        }
