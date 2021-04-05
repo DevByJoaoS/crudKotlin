@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import br.com.joaos.crud.kotlin.model.Product
 import org.springframework.http.HttpStatus
 import br.com.joaos.crud.kotlin.exception.DataException
-import java.lang.RuntimeException
-import javassist.NotFoundException
 
 @Service
 class ProductService {
