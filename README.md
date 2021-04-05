@@ -1,5 +1,5 @@
 # crudKotlin
-Basic crud with Kotlin
+Basic crud with Kotlin, SpringBoot and MySQL
 
 # Create
 Post: http://localhost:8080/api/products 
