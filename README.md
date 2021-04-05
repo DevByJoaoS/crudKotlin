@@ -31,3 +31,6 @@ Product : {
 # Delete
 Delete: http://localhost:8080/api/products/{id}
 
+# TODO:
+Implement application logs
+
