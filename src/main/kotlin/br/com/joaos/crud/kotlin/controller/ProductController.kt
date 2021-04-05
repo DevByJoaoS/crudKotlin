@@ -7,6 +7,7 @@ import br.com.joaos.crud.kotlin.service.ProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import br.com.joaos.crud.kotlin.model.Product
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
@@ -25,30 +26,30 @@ class ProductController {
 	@PostMapping
 	fun createNewProduct(@RequestBody product: Product): ResponseEntity<Product> {
 		val productCreated = productService.createProduct(product)
-		return ResponseEntity.ok(productCreated)
+		return ResponseEntity(productCreated, HttpStatus.OK)
 	}
 	
 	@GetMapping
 	fun getProducts(): ResponseEntity<MutableIterable<Product>> {
 		val products = productService.findAllProducts()
-		return ResponseEntity.ok(products)
+		return ResponseEntity(products, HttpStatus.OK)
 	}
 	
 	@GetMapping("/{id}")
 	fun getProductById(@PathVariable id: Long): ResponseEntity<Product> {
 		val product = productService.findProductById(id)
-		return ResponseEntity.ok(product)
+		return ResponseEntity(product, HttpStatus.OK)
 	}
 	
 	@PutMapping
 	fun updateProduct(@RequestBody product: Product): ResponseEntity<Product> {
 		val productUpdated = productService.updateProduct(product)
-		return ResponseEntity.ok(productUpdated)
+		return ResponseEntity(productUpdated, HttpStatus.OK)
 	}
 	
 	@DeleteMapping("/{id}")
 	fun deleteProduct(@PathVariable id: Long): ResponseEntity<Product> {
 		val productDeleted = productService.deleteProductById(id)
-		return ResponseEntity.ok(productDeleted)
+		return ResponseEntity(productDeleted, HttpStatus.OK)
 	}
 }
