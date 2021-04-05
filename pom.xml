@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.joaos</groupId>
 	<artifactId>crud.kotlin</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>crud.kotlin</name>
 	<description>Base crud in Kotlin</description>
 	<properties>
