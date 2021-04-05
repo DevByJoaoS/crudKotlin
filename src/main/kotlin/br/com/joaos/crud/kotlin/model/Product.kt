@@ -17,5 +17,5 @@ data class Product (
 	
 	var type: String = "",
 	
-	val value: BigDecimal = BigDecimal(0)
+	var value: BigDecimal = BigDecimal(0)
 )
